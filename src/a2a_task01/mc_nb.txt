@@ -1,0 +1,343 @@
+
+az acr update --name <registry-name> --admin-enabled true
+az acr credential show --name qy6mvwun4sqvccosureg --query "username" -o tsv
+az acr credential show --name qy6mvwun4sqvccosureg
+{
+  "passwords": [
+    {
+      "name": "password",
+      "value": "COhoUgs8Y8dqMJTBedBJ2ChhRkUUBc0xRXjyUy6Q8iu8JM7b0C4VJQQJ99CBACfhMk5Eqg7NAAACAZCRQokh"
+    },
+    {
+      "name": "password2",
+      "value": "8W2hbirhNK1kN2KVkknqgPbhVG555Pjz4lLjRiTHoKfbXQw0pxIDJQQJ99CBACfhMk5Eqg7NAAACAZCRcndq"
+    }
+  ],
+  "username": "qy6mvwun4sqvccosureg"
+}
+
+az acr credential show --name 7xhfzhopce4dmcosureg --query "username" -o tsv
+az acr credential show --name 7xhfzhopce4dmcosureg --query "passwords[0].value" -o tsv
+az acr credential show --name 7xhfzhopce4dmcosureg
+{
+  "passwords": [
+    {
+      "name": "password",
+      "value": "2PoBqYsty2y5fNZV46Tbuf9bpdFlGm2rrkzUVTKkremZm8w4ojnhJQQJ99CBACfhMk5Eqg7NAAACAZCRPysG"
+    },
+    {
+      "name": "password2",
+      "value": "E0gZbb0LNmtnluhZYgxzdmfnH6YH2BU59pbYFdCXciP5DtGVsdupJQQJ99CBACfhMk5Eqg7NAAACAZCRJQwF"
+    }
+  ],
+  "username": "7xhfzhopce4dmcosureg"
+}
+
+
+
+
+Remove-Item -Recurse -Force venv ; 
+python -m venv venv ; 
+.\venv\Scripts\Activate.ps1 ; 
+pip install -r requirements.txt
+
+
+or (try this first!):
+.\venv\Scripts\python.exe -m pip install --force-reinstall --no-deps uvicorn pip
+
+
+######### Starte App + Single Agent Example #########
+Guide: https://microsoft.github.io/TechWorkshop-L300-AI-Apps-and-agents/docs/02_implement_multimodal_ai_shopping_assistant/02_01.html
+### Starter App ###
+
+uvicorn chat_app_starter:app --host 0.0.0.0 --port 8000
+
+Try out the application
+Once you have the application open, you can interact with it through the chat interface.
+Enter the following prompt to demonstrate the application’s (limited) capabilities:
+What colors of paint do you have available?
+
+You will receive back a hard-coded response that, 
+“This application is not yet ready to serve results. Please check back later.”
+
+### Single Agent Example ###
+uvicorn chat_app_singleagent:app --host 0.0.0.0 --port 8000
+
+- What kinds of paints do you have?
+  You should receive a response that indicates that Zava has blue, green, and white paint. You may also receive additional information or sales-like suggestions.
+
+- How about lattices?
+  The agent will respond with a message that shows it understands that, in this case, “lattice” refers to a lattice trellis, which is a structure used to support climbing plants.
+
+- What about history books?
+   The agent will indicate that it can only assist with DIY-related inquiries.
+
+
+
+
+
+Multi-modal AI shopping assistant (multi-agent setup)
+Task 02 - Create a multi-agent solution:
+https://microsoft.github.io/TechWorkshop-L300-AI-Apps-and-agents/docs/02_implement_multimodal_ai_shopping_assistant/02_02.html
+
+
+mcp tools
+npx @modelcontextprotocol/inspector sse http://localhost:8000/mcp-inventory/sse
+
+
+python chat_app.py
+cd src
+cd app/servers
+mcp dev mcp_inventory_server.py
+
+from:  
+C:\Users\mafascio\TechWKS300AIAppsAgents-20260214-orig\TechWorkshop-L300-AI-Apps-and-agents-20260212-mc
+
+cd src
+.\venv\Scripts\Activate.ps1
+uvicorn chat_app:app --host 0.0.0.0 --port 8000
+MC Sample conversation:
+What colors of green paint do you have?
+
+I think I’m interested in Deep Forest. Do you have Deep Forest in the prod catalog?
+
+Given the image url sent to you, paint the walls with Deep Forest green color for a cozy DIY home makeover
+https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800
+
+How many gallons would I need to paint a medium sized living room?
+How much of PROD0018 do you have in stock?
+Let’s add two gallons to the cart, please.
+Please also add one paint tray and two of your All-Purpose Wall Paint Brushes.
+What items are in my cart right now?
+Please apply the discount that you calculated before.
+I’d like to check out now.
+
+
+
+## cosmos Dbs - check search settings
+ az cosmosdb show --name "7xhfzhopce4dm-cosmosdb" --resource-group (az cosmosdb list --query "[?name=='7xhfzhopce4dm-cosmosdb'].resourceGroup" -o tsv) --query "{capabilities: capabilities, name: name}" --output json 2>&1
+ 
+
+{
+  "capabilities": [
+    {
+      "name": "EnableNoSQLVectorSearch"
+    },
+    {
+      "name": "EnableNoSQLFullTextSearch"
+    }
+  ],
+  "name": "7xhfzhopce4dm-cosmosdb"
+}
+
+
+
+ az cosmosdb show --name "qy6mvwun4sqvc-cosmosdb" --resource-group (az cosmosdb list --query "[?name=='qy6mvwun4sqvc-cosmosdb'].resourceGroup" -o tsv) --query "{capabilities: capabilities, name: name}" --output json 2>&1
+ 
+
+
+
+
+ -- & "C:\Program Files\GitHub CLI\gh.exe" auth login
+
+from: 
+C:\Users\mafascio\TechWKS300AIAppsAgents-20260214-orig\TechWorkshop-L300-AI-Apps-and-agents-20260212-orig
+gh auth login
+
+gh repo create TechWorkshop-L300-AI-Apps-and-agents-20260212-orig-testmc  --public --source=. --push=false
+git remote set-url origin https://github.com/mafascio/TechWorkshop-L300-AI-Apps-and-agents-20260212-orig-testmc.git
+
+#gh auth refresh -h github.com
+#gh repo delete mafascio/TechWorkshop-L300-AI-Apps-and-agents-20260212-orig-testmc --yes
+
+
+#check gitignore and include notebooks
+if (Test-Path .gitignore) { Get-Content .gitignore } else { Write-Output "No .gitignore found" }
+git check-ignore .env venv/ src/test_notebook.ipynb src/cosmosdb_hybridsearch_nb.ipynb "src/test_notebook copy.ipynb"
+Add-Content .gitignore "`n# Notebooks`n*.ipynb"
+git check-ignore src/test_notebook.ipynb src/cosmosdb_hybridsearch_nb.ipynb "src/test_notebook copy.ipynb"
+Add-Content .gitignore "`n# Notes`nmc_nb_orig.txt" ; git rm --cached src/mc_nb_orig.txt ; git add .gitignore README.md ; git status --short
+# check 
+git check-ignore src/mc_nb_orig.txt
+Add-Content .gitignore "`n# Notes`nmc_nb_orig.txt" ; 
+git rm --cached src/mc_nb_orig.txt ; 
+
+
+git add .gitignore README.md ; git status --short
+
+git commit -m "Add mc_nb_orig.txt to gitignore and untrack it" Also, modify readme file to add a test comment; 
+git push origin main
+git rm --cached src/mc_nb_orig.txt ; git status --short
+
+git commit -m "Update gitignore to exclude mc_nb_orig.txt and notebooks, modify README" ; git push origin main
+
+
+
+# push
+git add . ; git status --short
+git commit -m "Multi-agent shopping assistant solution template - mctest"
+git push -u origin main
+git status
+git log --oneline -1
+
+
+git add . ; git status --short
+git commit -m "modified readmme file to ad the test comment"
+
+
+
+
+git commit -m "Fix image generation: parse image_output field, inject fallback URL, fix mcp_inventory_server syntax error, add *.ipynb to gitignore"
+git push origin main
+
+
+git add src/app/agents/agent_processor.py ; git commit -m "Fix inventory check: flatten double-nested results, add fallback for empty agent responses"
+git push origin main
+
+
+
+
+
+
+
+
+
+### A2A ###
+
+from:  C:\Users\mafascio\TechWKS300AIAppsAgents-20260214-orig\TechWorkshop-L300-AI-Apps-and-agents-20260212-mc
+src/a2a_task01
+src/a2a_task02
+agent: Contains the implementation of the AI agents that will handle specific tasks and interact with the A2A server. 
+These agents do not exist but you will create one simple agent as part of this task and extend them in the next task.
+
+api: This will contain an API layer built using FastAPI to handle incoming requests and route them to the appropriate agents. This file does not exist and you will create it as part of this task.
+static: CSS and JavaScript files that will be used by the HTML template. 
+The file static/js/chat.js contains a reference to the “Product Management Agent” but is otherwise generic and does not need to know the details of how the agent works.
+templates: HTML template for rendering the single-page application.
+
+
+Guide: https://microsoft.github.io/TechWorkshop-L300-AI-Apps-and-agents/docs/03_extend_shopping_assistant_with_a2a/03_extend_shopping_assistant_with_a2a.html
+
+Task01 (Product Management Agent)
+Task01 Guide https://microsoft.github.io/TechWorkshop-L300-AI-Apps-and-agents/docs/03_extend_shopping_assistant_with_a2a/03_01.html
+
+
+# Product Management Agent --> Single Agent
+in src/a2a_task01:
+
+
+
+python -m venv venv
+.\venv\Scripts\Activate.ps1; 
+pip install -r requirements.txt
+
+.\venv\Scripts\Activate 
+python -c "import sys; print(sys.executable)"
+C:\Users\mafascio\TechWKS300AIAppsAgents-20260214-orig\TechWorkshop-L300-AI-Apps-and-agents-20260212-orig\src\venv\Scripts\python.exe 
+python -c "import agent_framework; print(agent_framework.__version__); print(agent_framework.__file__)"
+1.0.0b260210
+
+from src:
+python a2a_task01/main.py
+
+in api/chat.py it must be: 
+from agent.product_management_agent import AgentFrameworkProductManagementAgent
+
+
+8001 forwared in vscode
+
+
+Navigate to: http://127.0.0.1:8001/agent-card/
+Agent Card: This will return a JSON response with details about the Zava Product Helper agent.
+
+
+
+Navigate to: http://127.0.0.1:8001/ to access the main application. 
+This will display a simple interface where you can enter queries for the Product Management Agent. 
+Ask the agent the following sample questions:
+
+# Single agent - Sample questions
+- Which paint roller is best for smooth surfaces?
+- Sell me on the benefits of the Zava paint sprayer.
+- How many different types of paint brushes do you offer?
+
+The agent should respond with relevant information based on the 
+first two queries, but because the agent is not connected to 
+any product database, it can't provide a meaningful response to the third query.
+
+
+
+## Extend A2A app (multi-agent setup) ##
+Task02 (Extend the Zava Product Manager application)
+Task02 Guide https://microsoft.github.io/TechWorkshop-L300-AI-Apps-and-agents/docs/03_extend_shopping_assistant_with_a2a/03_02.html
+
+from src:
+python a2a_task02/main.py
+http://127.0.0.1:8001
+# Multi-agent sample question
+
+- Make a better product description for the Standard Paint Roller.
+This will send the question to the Product Manager Agent, which will then route the request to the Marketing Agent. You can see these details in the application logs, which are available in the terminal.
+
+- What is that new description? 
+ (Optional)
+
+- What kinds of paint rollers do you have in stock? 
+  (Product Agent)
+- What other products do you have for painting?
+  (Product Agent)
+- I like the concept of the All-Purpose Paint Tray, but it sounds too generic. Can you make the description more exciting?
+  (Marketing Agent)
+- I’m planning to paint a very small box and can only afford to buy one product. Which product would you recommend?
+  (Ranker Agent)
+
+
+### Git Sync after a2a ###
+Get-Content .gitignore
+git status --short
+git check-ignore src/.env_orig src/a2a_task01/mc_nb.txt
+Get-ChildItem -Recurse -Force -Filter ".env*" -File | Select-Object FullName ; Get-ChildItem -Recurse -Force -Filter "env_*" -File | Select-Object FullName ; Get-ChildItem -Recurse -Filter "mc_nb*" -File | Select-Object FullName
+Get-ChildItem -Recurse -Force -Filter ".env*" -File | ForEach-Object { $_.FullName } ; Get-ChildItem -Recurse -Force -Filter "env_*" -File | ForEach-Object { $_.FullName } ; Get-ChildItem -Recurse -Filter "mc_nb*" -File | ForEach-Object { $_.FullName }
+
+gitignore modified
+
+git check-ignore src/.env_orig src/a2a_task01/mc_nb.txt
+git ls-files --cached src/.env_orig src/a2a_task01/mc_nb.txt src/.env
+
+None of them are tracked, so no need to git rm --cached.
+
+git add . ; git status --short
+git commit -m "Add A2A task01/task02 agents, update gitignore to exclude .env_orig and mc_nb.txt"
+git remote -v
+origin  https://github.com/mafascio/TechWorkshop-L300-AI-Apps-and-agents-20260212-mc.git (push)
+git push origin main
+
+/*
+Updated .gitignore — added .env_* pattern (catches .env_orig and similar) and **/mc_nb.txt to ignore those files everywhere.
+Committed 38 files (A2A task01/task02 agents, renamed a2a → a2a_orig, gitignore updates).
+Pushed to origin main successfully (01a7039..53f1b0f).
+*/
+
+
+
+.\venv\Scripts\python.exe -m pip install --force-reinstall --no-deps uvicorn pip
+
+uvicorn chat_app:app --host 0.0.0.0 --port 8000
+forward port 8000 in vscode
+http://0.0.0.0:8000
+
+MC Sample conversation:
+What colors of green paint do you have?
+
+I think I’m interested in Deep Forest. Do you have Deep Forest in the prod catalog?
+
+Given the image url sent to you, paint the walls with Deep Forest green color for a cozy DIY home makeover
+https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800
+
+How many gallons would I need to paint a medium sized living room?
+How much of PROD0018 do you have in stock?
+Let’s add two gallons to the cart, please.
+Please also add one paint tray and two of your All-Purpose Wall Paint Brushes.
+What items are in my cart right now?
+Please apply the discount that you calculated before.
+I’d like to check out now.
