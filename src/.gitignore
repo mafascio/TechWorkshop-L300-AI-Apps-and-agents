@@ -57,3 +57,6 @@ out/
 
 # Github
 .github/
+
+# Local notebooks
+*.ipynb
